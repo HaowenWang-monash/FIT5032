@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="studentSet" EntityType="Model1.Store.studentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="unitSet" EntityType="Model1.Store.unitSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="studentunit" Association="Model1.Store.studentunit">
+      <End Role="student" EntitySet="studentSet" />
+      <End Role="unit" EntitySet="unitSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="studentSet">
+    <Key>
+      <PropertyRef Name="studentId" />
+    </Key>
+    <Property Name="studentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="lastname" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="unitSet">
+    <Key>
+      <PropertyRef Name="unitId" />
+    </Key>
+    <Property Name="unitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="student_studentId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="studentunit">
+    <End Role="student" Type="Model1.Store.studentSet" Multiplicity="1" />
+    <End Role="unit" Type="Model1.Store.unitSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="unit">
+        <PropertyRef Name="student_studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

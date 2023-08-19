@@ -76,7 +76,6 @@ C:\Users\12530\Documents\GitHub\FIT5032\WebApplication1\WebApplication1\bin\Syst
 C:\Users\12530\Documents\GitHub\FIT5032\WebApplication1\WebApplication1\bin\Newtonsoft.Json.xml
 C:\Users\12530\Documents\GitHub\FIT5032\WebApplication1\WebApplication1\bin\Antlr3.Runtime.pdb
 C:\Users\12530\Documents\GitHub\FIT5032\WebApplication1\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\12530\Documents\GitHub\FIT5032\WebApplication1\WebApplication1\bin\zh-Hans\EntityFramework.resources.dll
 C:\Users\12530\Documents\GitHub\FIT5032\WebApplication1\WebApplication1\bin\zh-Hans\System.Web.Helpers.resources.dll
 C:\Users\12530\Documents\GitHub\FIT5032\WebApplication1\WebApplication1\bin\zh-Hans\System.Web.Mvc.resources.dll
 C:\Users\12530\Documents\GitHub\FIT5032\WebApplication1\WebApplication1\bin\zh-Hans\System.Web.Optimization.resources.dll
