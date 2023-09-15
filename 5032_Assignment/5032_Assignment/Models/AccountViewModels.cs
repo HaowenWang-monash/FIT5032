@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace _5032_Assignment.Models
@@ -89,8 +90,9 @@ namespace _5032_Assignment.Models
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "User Name")]
-        public string UserName { get; set; }
+        [DataType(DataType.Date)] 
+        [Display(Name = "Birth Date")]
+        public DateTime BirthDate { get; set; }
     }
 
     public class ResetPasswordViewModel

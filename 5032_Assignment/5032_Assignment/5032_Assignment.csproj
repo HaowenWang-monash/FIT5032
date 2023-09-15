@@ -171,13 +171,33 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202309141625216_InitialCreate.cs" />
+    <Compile Include="Migrations\202309141625216_InitialCreate.designer.cs">
+      <DependentUpon>202309141625216_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309150503091_InitialCreate1.cs" />
+    <Compile Include="Migrations\202309150503091_InitialCreate1.designer.cs">
+      <DependentUpon>202309150503091_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309150547128_AddBirthDateToUser.cs" />
+    <Compile Include="Migrations\202309150547128_AddBirthDateToUser.designer.cs">
+      <DependentUpon>202309150547128_AddBirthDateToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309151052559_UpdateModel.cs" />
+    <Compile Include="Migrations\202309151052559_UpdateModel.designer.cs">
+      <DependentUpon>202309151052559_UpdateModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\DoctorModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Model1.cs" />
@@ -265,8 +285,12 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Doctors\Delete.cshtml" />
+    <Content Include="Views\Doctors\Details.cshtml" />
+    <Content Include="Views\Doctors\Edit.cshtml" />
+    <Content Include="Views\Doctors\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
@@ -293,6 +317,20 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202309141625216_InitialCreate.resx">
+      <DependentUpon>202309141625216_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309150503091_InitialCreate1.resx">
+      <DependentUpon>202309150503091_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309150547128_AddBirthDateToUser.resx">
+      <DependentUpon>202309150547128_AddBirthDateToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309151052559_UpdateModel.resx">
+      <DependentUpon>202309151052559_UpdateModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

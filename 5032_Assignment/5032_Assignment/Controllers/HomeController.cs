@@ -11,6 +11,9 @@ namespace _5032_Assignment.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "medibook Medical Appointment System";
+            ViewBag.WelcomeMessage = "Welcome to the medibook medical appointment system. We offer a convenient doctor's appointment service for your health.";
+
             return View();
         }
 
@@ -27,5 +30,6 @@ namespace _5032_Assignment.Controllers
 
             return View();
         }
+
     }
 }

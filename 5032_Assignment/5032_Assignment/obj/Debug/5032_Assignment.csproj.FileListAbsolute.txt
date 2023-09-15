@@ -116,3 +116,8 @@ C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debu
 C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\5032_Assignment.csproj.CopyComplete
 C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\5032_Assignment.dll
 C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\5032_Assignment.pdb
+C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\_5032_Assignment.Migrations.InitialCreate.resources
+C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\5032_Assignment.csproj.GenerateResource.cache
+C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\_5032_Assignment.Migrations.InitialCreate1.resources
+C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\_5032_Assignment.Migrations.AddBirthDateToUser.resources
+C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\_5032_Assignment.Migrations.UpdateModel.resources

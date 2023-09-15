@@ -12,9 +12,18 @@ using _5032_Assignment.Models;
 
 namespace _5032_Assignment.Controllers
 {
+    public static class IdentityExtensions
+    {
+        public static string GetFirstName(this ClaimsIdentity identity)
+        {
+            var claim = identity.FindFirst(ClaimTypes.GivenName);
+            return (claim != null) ? claim.Value : string.Empty;
+        }
+    }
     [Authorize]
     public class AccountController : Controller
     {
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -86,7 +95,7 @@ namespace _5032_Assignment.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "无效的登录尝试。");
+                    ModelState.AddModelError("", "Invalid login attempts");
                     return View(model);
             }
         }
@@ -151,24 +160,21 @@ namespace _5032_Assignment.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.FirstName, Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    BirthDate = model.BirthDate
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // 有关如何启用帐户确认和密码重置的详细信息，请访问 https://go.microsoft.com/fwlink/?LinkID=320771
-                    // 发送包含此链接的电子邮件
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "确认你的帐户", "请通过单击<a href=\"" + callbackUrl + "\">此处</a>来确认你的帐户");
-
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
-            // 如果我们进行到这一步时某个地方出错，则重新显示表单
+          
             return View(model);
         }
 
@@ -278,7 +284,7 @@ namespace _5032_Assignment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
-            // 请求重定向到外部登录提供程序
+           
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
@@ -309,7 +315,7 @@ namespace _5032_Assignment.Controllers
                 return View();
             }
 
-            // 生成令牌并发送该令牌
+         
             if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return View("Error");
@@ -328,7 +334,7 @@ namespace _5032_Assignment.Controllers
                 return RedirectToAction("Login");
             }
 
-            // 如果用户已具有登录名，则使用此外部登录提供程序将该用户登录
+            
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
@@ -340,7 +346,7 @@ namespace _5032_Assignment.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
-                    // 如果用户没有帐户，则提示该用户创建帐户
+                    
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });

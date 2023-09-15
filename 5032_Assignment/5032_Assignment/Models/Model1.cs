@@ -8,7 +8,7 @@ namespace _5032_Assignment.Models
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model1")
+            : base("name=FIT5032_models")
         {
         }
 
