@@ -17,5 +17,7 @@ namespace _5032_Assignment.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
+
+        public System.Data.Entity.DbSet<_5032_Assignment.Models.Images> Images { get; set; }
     }
 }

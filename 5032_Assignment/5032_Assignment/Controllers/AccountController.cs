@@ -82,8 +82,7 @@ namespace _5032_Assignment.Controllers
                 return View(model);
             }
 
-            // 这不会计入到为执行帐户锁定而统计的登录失败次数中
-            // 若要在多次输入错误密码的情况下触发帐户锁定，请更改为 shouldLockout: true
+       
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -105,7 +104,7 @@ namespace _5032_Assignment.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
-            // 要求用户已通过使用用户名/密码或外部登录名登录
+            
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
@@ -125,10 +124,7 @@ namespace _5032_Assignment.Controllers
                 return View(model);
             }
 
-            // 以下代码可以防范双重身份验证代码遭到暴力破解攻击。
-            // 如果用户输入错误代码的次数达到指定的次数，则会将
-            // 该用户帐户锁定指定的时间。
-            // 可以在 IdentityConfig 中配置帐户锁定设置
+            
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
@@ -160,7 +156,7 @@ namespace _5032_Assignment.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.FirstName, Email = model.Email,
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     BirthDate = model.BirthDate
@@ -168,6 +164,7 @@ namespace _5032_Assignment.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, "patient");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -211,19 +208,13 @@ namespace _5032_Assignment.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    // 请不要显示该用户不存在或者未经确认
+                    
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // 有关如何启用帐户确认和密码重置的详细信息，请访问 https://go.microsoft.com/fwlink/?LinkID=320771
-                // 发送包含此链接的电子邮件
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "重置密码", "请通过单击<a href=\"" + callbackUrl + "\">此处</a>来重置你的密码");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+               
             }
 
-            // 如果我们进行到这一步时某个地方出错，则重新显示表单
             return View(model);
         }
 
@@ -257,7 +248,7 @@ namespace _5032_Assignment.Controllers
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
             {
-                // 请不要显示该用户不存在
+               
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
@@ -367,7 +358,7 @@ namespace _5032_Assignment.Controllers
 
             if (ModelState.IsValid)
             {
-                // 从外部登录提供程序中获取有关用户的信息
+                
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<_5032_Assignment.Models.Appointment>
+
+@{
+    ViewBag.Title = "Appointments Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .appointments-container {
+        max-width: 800px;
+        margin: 5% auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: #ffffff;
+    }
+
+    .appointments-header {
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e7e7e7;
+        padding-bottom: 10px;
+    }
+
+    .btn-appointments {
+        background-color: #007BFF;
+        color: #ffffff;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .btn-appointments:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="appointments-container">
+    <div class="appointments-header">
+        <h2>Appointments</h2>
+    </div>
+
+    <div class="text-center mb-3">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn-appointments" })
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayName("Doctor Name")</th>
+                <th>@Html.DisplayNameFor(model => model.AppointmentTime)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Doctors.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AppointmentTime)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+}
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />

@@ -121,3 +121,7 @@ C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debu
 C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\_5032_Assignment.Migrations.InitialCreate1.resources
 C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\_5032_Assignment.Migrations.AddBirthDateToUser.resources
 C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\obj\Debug\_5032_Assignment.Migrations.UpdateModel.resources
+C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\bin\SendGrid.dll
+C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\bin\StarkbankEcdsa.dll
+C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\bin\SendGrid.pdb
+C:\Users\12530\Documents\GitHub\FIT5032\5032_Assignment\5032_Assignment\bin\SendGrid.xml

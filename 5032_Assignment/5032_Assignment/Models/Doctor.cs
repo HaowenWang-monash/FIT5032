@@ -27,5 +27,7 @@ namespace _5032_Assignment.Models
         public string Location { get; set; }
 
         public int? HospitalID { get; set; }
+
+        
     }
 }

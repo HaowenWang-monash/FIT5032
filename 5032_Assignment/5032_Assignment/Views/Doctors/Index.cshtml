@@ -1,58 +1,90 @@
 ﻿@model IEnumerable<_5032_Assignment.Models.Doctor>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Our Doctors";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<style>
+    .doctors-container {
+        max-width: 900px;
+        margin: 5% auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: #ffffff;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Specialization)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HospitalID)
-        </th>
-        <th></th>
-    </tr>
+    .doctors-header {
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e7e7e7;
+        padding-bottom: 10px;
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Specialization)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HospitalID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DoctorID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DoctorID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DoctorID })
-        </td>
-    </tr>
+    .btn-doctors {
+        background-color: #007BFF;
+        color: #ffffff;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .btn-doctors:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="doctors-container">
+    <div class="doctors-header">
+        <h2>Our Doctors</h2>
+    </div>
+
+    <div class="text-center mb-3">
+        @Html.ActionLink("Add New Doctor", "Create", null, new { @class = "btn-doctors" })
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                <th>@Html.DisplayNameFor(model => model.Specialization)</th>
+                <th>@Html.DisplayNameFor(model => model.Location)</th>
+                <th>@Html.DisplayNameFor(model => model.HospitalID)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Specialization)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HospitalID)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.DoctorID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.DoctorID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.DoctorID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
 }
 
-</table>
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />

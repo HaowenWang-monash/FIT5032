@@ -42,8 +42,7 @@ namespace _5032_Assignment.Controllers
         }
 
         // POST: Doctors/Create
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性。有关
-        // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "DoctorID,FirstName,LastName,Specialization,Location,HospitalID")] Doctor doctor)
@@ -74,8 +73,6 @@ namespace _5032_Assignment.Controllers
         }
 
         // POST: Doctors/Edit/5
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性。有关
-        // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "DoctorID,FirstName,LastName,Specialization,Location,HospitalID")] Doctor doctor)

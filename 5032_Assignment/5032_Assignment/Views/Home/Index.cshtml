@@ -2,32 +2,101 @@
     ViewBag.Title = "Home Page";
 }
 
+<!-- Adding Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    h1, h2 {
+        font-family: 'Playfair Display', serif;
+        color: #333;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004999;
+        }
+
+    main {
+        padding: 20px 0;
+    }
+
+    .text-center {
+        color: #555;
+    }
+</style>
+
+
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">medibook system</h1>
-        
+    <section class="text-center my-5">
+        <h1>Medibook System</h1>
+        <p>Welcome to Medibook Medical Appointment System. We offer convenient doctor's appointments for your health.</p>
+        @if (ViewBag.IsAdmin)
+        {
+            <div class="row justify-content-center">
+                <div class="col-md-12 mb-4 text-center">
+                    <h2>This is the doctor system.</h2>
+                </div>
+            </div>
+
+
+        }
     </section>
 
-    <div class="row">
-        <section class="row">
-            <div class="col-md-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
                 <h2>List of Doctors</h2>
                 <p>Check out our team of doctors and choose the right one.</p>
                 <p><a class="btn btn-primary btn-lg" href="@Url.Action("index", "Doctors")">View Doctors &raquo;</a></p>
             </div>
-            <div class="col-md-6">
-                <h2>Appointment Service</h2>
-                <p>Make an appointment with the doctor of your choice for medical care.</p>
-                <p><a class="btn btn-primary btn-lg" href="@Url.Action("Create", "Appointment")">Make an Appointment Now &raquo;</a></p>
-            </div>
-        </section>
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h1 id="welcomeTitle">Welcome to medibook Medical Appointment System</h1>
-            <p>
-                We offer convenient doctor's appointments for your health.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-       
+            @if (ViewBag.IsAdmin)
+            {
+
+                <div class="col-md-4 mb-4">
+                    <h2>Send email</h2>
+                    <p>Click here to send an email to a patient</p>
+                    <p><a class="btn btn-primary btn-lg" href="@Url.Action("Send_Email", "Home")">Send Email &raquo;</a></p>
+                </div>
+            }
+
+            @if (User.Identity.IsAuthenticated && !ViewBag.IsAdmin)
+            {
+                <div class="col-md-4 mb-4">
+                    <h2>Appointment Service</h2>
+                    <p>Make an appointment with the doctor of your choice for medical care.</p>
+                    <p><a class="btn btn-primary btn-lg" href="@Url.Action("Create", "Appointments")">Make an Appointment Now &raquo;</a></p>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <h2>Upload Medical Records</h2>
+                    <p>Upload your medical history sheet for better care.</p>
+                    <p><a class="btn btn-primary btn-lg" href="@Url.Action("index", "Images")">Upload Records &raquo;</a></p>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <h2>My Appointments</h2>
+                    <p>View and manage your upcoming appointments.</p>
+                    <p><a class="btn btn-primary btn-lg" href="@Url.Action("index", "Appointments")">View Appointments &raquo;</a></p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h2>Rate the Doctor</h2>
+                    <p>Want to rate a doctor? Please click here!</p>
+                    <p><a class="btn btn-primary btn-lg" href="@Url.Action("index", "Ratings")">Rate the Doctor &raquo;</a></p>
+                </div>
+            }
+        </div>
     </div>
 </main>
+

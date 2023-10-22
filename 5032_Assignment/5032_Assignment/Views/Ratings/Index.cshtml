@@ -1,0 +1,67 @@
+﻿@model IEnumerable<_5032_Assignment.Models.DoctorRatingViewModel>
+
+@{
+    ViewBag.Title = "Doctor Ratings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .ratings-container {
+        max-width: 800px;
+        margin: 5% auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: #ffffff;
+    }
+
+    .ratings-header {
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e7e7e7;
+        padding-bottom: 10px;
+    }
+
+    .btn-ratings {
+        background-color: #007BFF;
+        color: #ffffff;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .btn-ratings:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="ratings-container">
+    <div class="ratings-header">
+        <h2>Doctor Ratings</h2>
+    </div>
+
+    <div class="text-center mb-3">
+        @Html.ActionLink("Rate a Doctor", "Create", null, new { @class = "btn-ratings" })
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.DoctorName)</th>
+                <th>@Html.DisplayNameFor(model => model.AverageRating)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DoctorName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AverageRating)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

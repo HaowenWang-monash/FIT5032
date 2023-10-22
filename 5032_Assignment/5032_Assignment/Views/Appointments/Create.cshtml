@@ -1,0 +1,85 @@
+﻿@model _5032_Assignment.Models.Appointment
+
+@{
+    ViewBag.Title = "Create Appointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .appointment-container {
+        max-width: 600px;
+        margin: 5% auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: #ffffff;
+    }
+
+    .appointment-header {
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e7e7e7;
+        padding-bottom: 10px;
+    }
+
+    .btn-appointment {
+        background-color: #007BFF;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .btn-appointment:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="appointment-container">
+    <div class="appointment-header">
+        <h2>Create Appointment</h2>
+    </div>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AppointmentTime, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.AppointmentTime, new { @class = "form-control", @id = "datetimepicker" })
+            @Html.ValidationMessageFor(model => model.AppointmentTime, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Doctor", new { @class = "form-label" })
+            @Html.DropDownList("DoctorId", ViewBag.DoctorList as SelectList, "Select a Doctor", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DoctorID, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group text-center">
+            <input type="submit" value="Create" class="btn-appointment" />
+        </div>
+    }
+
+    <div class="text-center mt-3">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+<link rel="stylesheet" href="~/Content/jquery.datetimepicker.css">
+<script src="~/Scripts/jquery.datetimepicker.js" defer></script>
+
+<script>
+    $(document).ready(function () {
+        $('#datetimepicker').datetimepicker({
+            format: 'Y-m-d H:i',
+            step: 15,
+            minDate: new Date()
+        });
+    });
+</script>
